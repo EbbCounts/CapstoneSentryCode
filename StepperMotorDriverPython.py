@@ -1,8 +1,6 @@
 import Jetson.GPIO as GPIO
 import time
 
-# This is going to be a lot easier to do in Python like you said, the Jetson already has a GPIO library for Python
-
 # Pin Definitions
 step_pin_x = 17  # GPIO pin for X-axis step (BCM numbering)
 dir_pin_x = 27   # GPIO pin for X-axis direction
@@ -59,4 +57,39 @@ def update_camera_position():
         current_y = desired_y
     elif current_y > desired_y:
         steps = (current_y - desired_y) * steps_per_unit_y
-        move_stepper(steps, step_pin_y, dir_pin
+        move_stepper(steps, step_pin_y, dir_pin_y, False)
+        current_y = desired_y
+
+# Main loop
+def main():
+    global desired_x, desired_y
+
+    # Initialize GPIO
+    setup_gpio()
+
+    try:
+        # Set initial desired position
+        desired_x = 10
+        desired_y = 10
+
+        while True:
+            # Simulate neural network updating desired_x and desired_y
+            # desired_x = ...
+            # desired_y = ...
+
+            # Update camera position
+            update_camera_position()
+
+            # Print current position for debugging
+            print(f"Current Position: ({current_x}, {current_y})")
+
+            # Add a delay to control update speed
+            time.sleep(0.05)
+
+    except KeyboardInterrupt:
+        print("Exiting program.")
+    finally:
+        GPIO.cleanup()  # Clean up GPIO resources
+
+if __name__ == "__main__":
+    main()
