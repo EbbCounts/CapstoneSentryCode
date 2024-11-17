@@ -77,6 +77,7 @@ void loop() {
 
 int main() {
     // Set initial desired position for testing
+    //the desired X and Y will come from the Neural Network
     desiredX = 10;
     desiredY = 10;
 
