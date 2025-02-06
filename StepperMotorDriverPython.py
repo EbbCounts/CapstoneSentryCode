@@ -9,7 +9,7 @@ dir_pin_y = 23   # GPIO pin for Y-axis direction
 
 # Steps per unit (adjust according to your stepper motor and driver settings)
 steps_per_unit_x = 10
-steps_per_unit_y = 10
+steps_per_unit_y = 10 #what is this doing?
 
 # Current position variables
 current_x = 0
@@ -90,6 +90,6 @@ def main():
         print("Exiting program.")
     finally:
         GPIO.cleanup()  # Clean up GPIO resources
-
+        #is this cleanup command correct?
 if __name__ == "__main__":
     main()
